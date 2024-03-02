@@ -19,8 +19,10 @@
 }
 
 #user-container {
+    display: flex;
     margin: 10px 10px;
-    align-content: center;
+    /*align-content: center;*/
+    align-items: center;
 }
 
 #login-tag {
@@ -94,6 +96,8 @@ li a {
 #category-container > ul > li > ul {
     padding-inline-start: 0;
     display: none;
+    position: relative;
+    z-index: 0;
 }
 
 #category-container > ul > li > ul > li {

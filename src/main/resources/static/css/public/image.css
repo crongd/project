@@ -46,9 +46,12 @@
 
 .img-item {
     width: 200px;
-    height: 200px;
+    height: 225px;
     border: 1px solid black;
     margin: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /*white-space: nowrap;*/
 }
 
 #img-view-container .img-item > img {

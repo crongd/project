@@ -4,9 +4,13 @@ const fileInput = imageSection.querySelector('#file-input');
 const imgViewContainer = document.querySelector('#img-view-container');
 
 
+// fileInput.onchange = () => {
+//     console.log(fileInput.files[0]);
+// }
+
 fileInput.onchange = () => {
     const fileArr = fileInput.files;
-    const reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
+    const reg = /(.*?)\.(jpg|jpeg|png|gif|bmp|pptx)$/;
 
     for (let file of fileArr) {
         if (file.name.match(reg)) {
@@ -17,7 +21,7 @@ fileInput.onchange = () => {
                 let name = file.name;
                 imgViewContainer.insertAdjacentHTML('beforeend',
                     `<div class="img-item">
-                        <img src="${img}" alt="사진">
+                        <img src="../../static/image/icon-pdf.png" th:src="@{/image/icon-pdf.png}"/>
                         <span>${name}</span>
                      </div>`)
             }

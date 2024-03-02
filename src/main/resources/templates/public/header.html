@@ -6,7 +6,7 @@
     <script src="https://kit.fontawesome.com/53e865f4e7.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
 </head>
-<body>
+<body th:fragment="header">
     <header id="header">
         <div id="logo-container">
             <a href="#" id="img-tag"><img id="header-img" src="https://blog.kakaocdn.net/dn/tDGUE/btqCOy0qApR/hgBXXnCyitQnkbyYUzF1Bk/img.jpg" alt=""></a>
@@ -30,19 +30,19 @@
                     </ul>
                 </li>
                 <li>
-                    <span>항목2</span>
+                    <span>문서</span>
                     <ul>
-                        <li><a href="#">서브항목1</a></li>
-                        <li><a href="#">서브항목2</a></li>
-                        <li><a href="#">서브항목3</a></li>
+                        <li><a href="#">문서 압축</a></li>
+                        <li><a href="#">문서 형식변경</a></li>
+                        <li><a href="#">문서 어쩌구...</a></li>
                     </ul>
                 </li>
                 <li>
-                    <span>항목3</span>
+                    <span>인코더</span>
                     <ul>
-                        <li><a href="#">서브항목1</a></li>
-                        <li><a href="#">서브항목2</a></li>
-                        <li><a href="#">서브항목3</a></li>
+                        <li><a href="#">URL</a></li>
+                        <li><a href="#">암호화1</a></li>
+                        <li><a href="#">암호화2</a></li>
                     </ul>
                 </li>
                 <li>
@@ -55,7 +55,6 @@
                 </li>
             </ul>
         </div>
-
         <hr>
     </section>
 </body>

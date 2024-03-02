@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <title>imagePublic</title>
     <link rel="stylesheet" href="../../static/css/public/image.css" th:href="@{/css/image.css}">
-    <script src="../../static/js/public/image.js" th:src="@{/js/public/image.js}" defer></script>
+    <script src="../../static/js/public/file.js" th:src="@{/js/public/file.js}" defer></script>
 </head>
 <body>
-    <section id="image-section" th:fragment="image">
+    <section id="image-section">
         <label id="img-label">
             <span id="img-span">드래그 or 파일 추가</span>
-            <input id="file-input" type="file" multiple accept=".jpg, .jpeg, .png, .gif, .bmp">
+            <input id="file-input" type="file" multiple>
         </label>
         <div id="img-view-container">
 
