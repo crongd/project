@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>encoder public</title>
+    <link rel="stylesheet" href="../../static/css/public/encoder.css" th:href="@{/css/public/encoder.css}">
+</head>
+<body>
+  <section id="encoder-fragment" th:fragment="encoder">
+    <label><textarea id="inputText" cols="70" rows="10" placeholder="내용을 입력해주세요"></textarea></label> <br>
+    <button id="submit-btn">변환</button>
+    <br>
+    <label><textarea id="outputText" cols="70" rows="10"></textarea></label>
+  </section>
+</body>
+</html>

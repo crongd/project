@@ -1,12 +1,16 @@
 const submitBtn = document.querySelector('#submit-btn');
 const width = document.querySelector('#width');
 const height = document.querySelector('#height');
+const check = document.querySelector('#check');
+const selection = document.querySelector('#image-section');
+
 submitBtn.onclick = () => {
     const files = fileInput.files;
     console.log(files)
     console.log(width.value)
     console.log(height.value)
-
+    console.log(check.checked)
+    console.log(selection.value);
 
     let data = new FormData();
     for (const file of files) {
@@ -14,16 +18,23 @@ submitBtn.onclick = () => {
     }
     data.append('width', width.value);
     data.append('height', height.value);
+    data.append('check', check.checked);
+    data.append('position', selection.value);
 
-    fetch('/image/size', {
+    fetch('/image/cut', {
         method: 'POST',
         body: data
     }).then(resp => resp.json())
-        .then(images => {
+        .then(data => {
             const imgContainer = document.querySelector('#complete-img-container');
-            images.forEach((image, index) => {
+            data.forEach(item => {
+                console.log("name: " + item.name);
+                console.log("image: " + item.image);
                 imgContainer.insertAdjacentHTML('beforeend',
-                    `<img class="complete-img" src="data:image/jpeg;base64,${image}" alt="처리된 이미지">`)
+                    `<div>
+                            <img class="complete-img" src="${item.image}" alt="처리된 이미지"><br>
+                            <a href="${item.image}" download="${item.name}">${item.name}</a>
+                        </div>`)
             })
 
         })

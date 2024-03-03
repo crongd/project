@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>URL ENCODER</title>
+    <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
+    <link rel="stylesheet" href="../../static/css/public/encoder.css" th:href="@{/css/public/encoder.css}">
+    <script src="../../static/js/encode/url-encoder.js" th:src="@{/js/encode/url-encoder.js}" defer></script>
+
+</head>
+<body>
+<th:block th:replace="~{public/header :: header}"></th:block>
+
+<h1 class="title">URL 인코더</h1>
+
+<th:block th:replace="~{public/encoder :: encoder}"></th:block>
+</body>
+</html>
+
+<style>
+    .title {
+        text-align: center;
+        margin: 20px;
+    }
+</style>

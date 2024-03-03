@@ -1,0 +1,26 @@
+#encoder-fragment {
+    margin: 20px;
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+    border: 2px solid #0855fd;
+    border-radius: 5px;
+    font-size: 1.2rem;
+}
+
+#submit-btn {
+    margin: 20px 0;
+    width: 70px;
+    height: 50px;
+    color: white;
+    background-color: #0855fd;
+    font-size: 1.2rem;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+
+#submit-btn:hover {
+    background-color: #3b73ff;
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이미지 회전</title>
+    <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
+    <script src="../../static/js/public/image.js" th:src="@{/js/public/image.js}" defer></script>
+    <link rel="stylesheet" href="../../static/css/public/image.css" th:href="@{/css/public/image.css}">
+    <script src="../../static/js/image/image-rotation.js" th:src="@{/js/image/image-rotation.js}" defer></script>
+
+
+</head>
+<body>
+<th:block th:replace="~{public/header :: header}"></th:block>
+
+<h1 class="title">이미지를 회전시킴</h1>
+<div id="content">
+    <div>
+        <select name="" id="rotation-selection">
+            <option value="45">45도</option>
+            <option value="90">90도</option>
+            <option value="135">135도</option>
+            <option value="180">180도</option>
+            <option value="225">225도</option>
+            <option value="270">270도</option>
+            <option value="315">315도</option>
+            <option value="360">360도</option>
+        </select>
+    </div>
+    <div><button id="submit-btn">처리하기</button></div>
+</div>
+<th:block th:replace="~{public/image :: image}"></th:block>
+
+<div id="complete-img-container">
+
+
+</div>
+
+</body>
+</html>
+
+<style>
+    #complete-img-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        justify-items: center;
+    }
+
+    .complete-img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .title {
+        text-align: center;
+        margin: 20px;
+    }
+
+    #content {
+        display: flex;
+        justify-content: center;
+    }
+
+    #content button {
+        margin: 0 20px;
+        width: 60px;
+        height: 30px;
+        background-color: #0855fd;
+        color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #content button:hover {
+        background-color: #3b73ff;
+    }
+</style>

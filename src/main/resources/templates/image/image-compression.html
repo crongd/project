@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>이미지 사이즈 조정</title>
+    <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
+    <script src="../../static/js/public/image.js" th:src="@{/js/public/image.js}" defer></script>
+    <link rel="stylesheet" href="../../static/css/public/image.css" th:href="@{/css/public/image.css}">
+    <script src="../../static/js/image/image-compression.js" th:src="@{/js/image/image-compression.js}" defer></script>
+
+
+</head>
+<body>
+<th:block th:replace="~{public/header :: header}"></th:block>
+
+<h1 class="title">이미지 용량을 조절함</h1>
+<h2 class="title">많은 사용은 이미지의 품질을 떨어트릴 수 있음</h2>
+<div id="content">
+<!--    <div>-->
+<!--        <label><input type="checkbox" id="check"> 사진 비율 무시 </label><br>-->
+<!--        <label>WIDTH : <input type="number" id="width"> px</label><br>-->
+<!--        <label>HEIGHT : <input type="number" id="height"> px</label>-->
+<!--    </div>-->
+    <div><button id="submit-btn">처리하기</button></div>
+</div>
+<th:block th:replace="~{public/image :: image}"></th:block>
+
+<div id="complete-img-container">
+
+
+</div>
+
+</body>
+</html>
+
+<style>
+    #complete-img-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+        justify-items: center;
+    }
+
+    .complete-img {
+        width: 200px;
+        height: 200px;
+    }
+
+    .title {
+        text-align: center;
+        margin: 20px;
+    }
+
+    #content {
+        display: flex;
+        justify-content: center;
+    }
+
+    #content button {
+        margin: 0 20px;
+        width: 60px;
+        height: 60px;
+        background-color: #0855fd;
+        color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #content button:hover {
+        background-color: #3b73ff;
+    }
+</style>

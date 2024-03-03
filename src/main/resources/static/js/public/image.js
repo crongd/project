@@ -1,13 +1,14 @@
 const imageSection = document.querySelector('#image-section');
-const imgLabel = imageSection.querySelector('#img-label');
-const fileInput = imageSection.querySelector('#file-input');
+const imgLabel = document.querySelector('#img-label');
+const fileInput = document.querySelector('#file-input');
 const imgViewContainer = document.querySelector('#img-view-container');
 
-
+// console.log(fileInput)
 fileInput.onchange = () => {
     const fileArr = fileInput.files;
     const reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
-
+    console.log(fileInput.files);
+    imgViewContainer.innerHTML = '';
     for (let file of fileArr) {
         if (file.name.match(reg)) {
             const reader = new FileReader();
@@ -17,9 +18,9 @@ fileInput.onchange = () => {
                 let name = file.name;
                 imgViewContainer.insertAdjacentHTML('beforeend',
                     `<div class="img-item">
-                        <img src="${img}" alt="사진">
-                        <span>${name}</span>
-                     </div>`)
+                    <img src="${img}" alt="사진">
+                    <span>${name}</span>
+                 </div>`)
             }
         } else {
             alert(file.name + "이 파일은 이미지가 아님");
@@ -53,3 +54,5 @@ imgLabel.ondrop = (event) => {
 //         }
 //     }
 // }
+
+
