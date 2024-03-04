@@ -49,4 +49,9 @@ public class ViewController {
     public String sha512() {
         return "encode/sha512";
     }
+
+    @GetMapping("/pdf-text-or-image")
+    public String pdf_text_or_image() {
+        return "file/pdf-text-or-image";
+    }
 }

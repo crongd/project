@@ -1,15 +1,22 @@
-const imageSection = document.querySelector('#image-section');
+// const imageSection = document.querySelector('#image-section');
 const imgLabel = document.querySelector('#img-label');
 const fileInput = document.querySelector('#file-input');
 const imgViewContainer = document.querySelector('#img-view-container');
+let imageData = [];
+// console.log(imgLabel);
 
 // console.log(fileInput)
 fileInput.onchange = () => {
-    const fileArr = fileInput.files;
+    console.log('채인지 됨')
+    // const fileArr = fileInput.files;
+    imageControl(fileInput.files);
+
+}
+
+function imageControl(files) {
     const reg = /(.*?)\.(jpg|jpeg|png|gif|bmp)$/;
-    console.log(fileInput.files);
     imgViewContainer.innerHTML = '';
-    for (let file of fileArr) {
+    for (let file of files) {
         if (file.name.match(reg)) {
             const reader = new FileReader();
             reader.readAsDataURL(file);
@@ -22,27 +29,39 @@ fileInput.onchange = () => {
                     <span>${name}</span>
                  </div>`)
             }
+            imageData.push(file);
         } else {
-            alert(file.name + "이 파일은 이미지가 아님");
+            alert(file.name + " \n이 파일은 이미지가 아님");
             return;
         }
     }
+    console.log(imageData);
 }
 
-imgLabel.ondragenter = (event) => {
+
+imgLabel.ondragenter = event => {
+    // event.preventDefault();
+    console.log('드래그 시작..');
+    imgLabel.style.backgroundColor = 'blue';
+}
+imgLabel.ondragleave = event => {
+    // event.preventDefault();
+    console.log('드래그 나감..');
+    imgLabel.style.backgroundColor = 'white';
+}
+imgLabel.ondragover = event => {
     event.preventDefault();
-    console.log('안으로 들어옴')
+}
+imgLabel.ondragend = event => {
+    // event.preventDefault()
+}
+imgLabel.ondrop = event => {
+    event.preventDefault();
+    imgLabel.style.backgroundColor = 'white';
+    imageControl(event.dataTransfer.files);
 }
 
-imgLabel.ondragleave = (event) => {
-    event.preventDefault();
-    console.log('밖으로 나감');
-}
 
-imgLabel.ondrop = (event) => {
-    event.preventDefault();
-    console.dir('안에 드랍함');
-}
 
 
 // function image_file_check(files) {

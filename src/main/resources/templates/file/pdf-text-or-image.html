@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
+    <link rel="stylesheet" href="../../static/css/public/file.css" th:href="@{/css/public/file.css}">
+    <script src="../../static/js/public/file.js" th:src="@{/js/public/file.js}" defer></script>
+
+    <script src="../../static/js/file/pdf-text-or-image.js" th:src="@{/js/file/pdf-text-or-image.js}" defer></script>
+</head>
+<body>
+<th:block th:replace="~{public/header :: header}"></th:block>
+
+<h1 id="title">pdf 문자와 이미지 추출하기</h1>
+<section id="content">
+    <div>
+        <label>start page<input type="number" id="startNo"></label> <br>
+        <label>end page<input type="number" id="endNo"></label> <br>
+    </div>
+    <div>
+        <button id="submit-btn">처리</button>
+    </div>
+</section>
+
+<th:block th:replace="~{public/file :: file}"></th:block>
+
+<div id="complete-container">
+    <div id="complete-text">
+
+    </div>
+    <div id="complete-image">
+
+    </div>
+
+</div>
+
+</body>
+</html>
+
+<style>
+    #complete-image {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        justify-items: center;
+    }
+
+    .complete-img {
+        width: 200px;
+        height: 200px;
+    }
+
+
+    #complete-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    #complete-text {
+        border: 1px solid black;
+        width: 300px;
+        height: 300px;
+        overflow: auto;
+    }
+
+    #complete-image {
+        border: 1px solid black;
+        width: 500px;
+        height: 300px;
+        overflow: auto;
+    }
+
+    #title {
+        text-align: center;
+        margin: 20px;
+    }
+
+    #content {
+        display: flex;
+        justify-content: center;
+    }
+
+    #submit-btn {
+        margin: 0 20px;
+        width: 60px;
+        height: 45px;
+        background-color: #0855fd;
+        color: white;
+        border: 1px solid white;
+        border-radius: 10px;
+        cursor: pointer;
+    }
+
+    #submit-btn:hover {
+        background-color: #3b73ff;
+    }
+</style>

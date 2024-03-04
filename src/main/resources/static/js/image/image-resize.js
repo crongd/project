@@ -4,7 +4,8 @@ const height = document.querySelector('#height');
 const check = document.querySelector('#check');
 
 submitBtn.onclick = () => {
-    const files = fileInput.files;
+    // const files = fileInput.files;
+    const files = imageData;
     console.log(files)
     console.log(width.value)
     console.log(height.value)

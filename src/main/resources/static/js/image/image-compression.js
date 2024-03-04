@@ -1,7 +1,9 @@
 const submitBtn = document.querySelector('#submit-btn');
 
 submitBtn.onclick = () => {
-    const files = fileInput.files;
+    // const files = fileInput.files;
+    const files = imageData;
+
     console.log(files);
 
     let data = new FormData();

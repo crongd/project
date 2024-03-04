@@ -5,7 +5,8 @@ const check = document.querySelector('#check');
 const selection = document.querySelector('#image-section');
 
 submitBtn.onclick = () => {
-    const files = fileInput.files;
+    // const files = fileInput.files;
+    const files = imageData;
     console.log(files)
     console.log(width.value)
     console.log(height.value)

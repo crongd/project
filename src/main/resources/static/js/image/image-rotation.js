@@ -2,7 +2,9 @@ const submitBtn = document.querySelector('#submit-btn');
 const rotationSelect = document.querySelector('#rotation-selection');
 
 submitBtn.onclick = () => {
-    const files = fileInput.files;
+    // const files = fileInput.files;
+    const files = imageData;
+
     console.log(files);
     console.log(rotationSelect.value);
 
@@ -28,5 +30,7 @@ submitBtn.onclick = () => {
                             <a href="${item.image}" download="${item.name}">${item.name}</a>
                         </div>`)
             })
-        })
+        }).catch(e => {
+        console.log('에러남')
+    })
 }
