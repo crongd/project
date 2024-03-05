@@ -6,6 +6,14 @@ const resultImage = document.querySelector('#complete-image');
 
 
 submitBtn.onclick = () => {
+    if (fileData.length > 1) {
+        alert('텍스트 및 이미지 추출은 1개의 파일만 가능합니다.');
+        imgViewContainer.innerHTML = '';
+        return;
+    }
+    resultText.innerText = '';
+    resultImage.innerHTML = '';
+
     let data = new FormData();
     data.append("pdf", fileData[0]);
     data.append("startPage", startPage.value);

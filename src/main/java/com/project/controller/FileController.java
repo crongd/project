@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,5 +30,13 @@ public class FileController {
         System.out.println(endPage);
 
         return fileService.pdf_text_or_image(pdf, startPage, endPage);
+    }
+
+    @PostMapping("/pdf-merge")
+    public Map<String, Object> pdf_merge(
+            @RequestParam("pdfs") List<MultipartFile> pdfs
+    ) {
+        System.out.println(pdfs);
+        return null;
     }
 }

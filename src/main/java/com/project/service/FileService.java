@@ -1,6 +1,8 @@
 package com.project.service;
 
 import org.apache.pdfbox.cos.COSName;
+import org.apache.pdfbox.io.MemoryUsageSetting;
+import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageTree;
@@ -9,6 +11,7 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -16,6 +19,7 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.*;
 
 @Service
@@ -73,6 +77,31 @@ public class FileService {
 
     }
 
+    public Map<String, Object> pdf_merge(List<MultipartFile> pdfs) throws IOException {
+        PDFMergerUtility merger = new PDFMergerUtility();
+
+        File[] files = new File[pdfs.size()];
+
+        for (int i = 0; i < pdfs.size(); i++) {
+            files[i] = multipartFileToFile(pdfs.get(i));
+        }
+
+        for (File file : files) {
+            if (file.getName().endsWith(".pdf")){
+                String pdfFilePath = file.getAbsolutePath(); // 절대경로
+                merger.addSource(pdfFilePath);
+            }
+        }
+//        merger.set;
+//        InputStream result = merger.mergeDocuments(MemoryUsageSetting.setupMainMemoryOnly());
+
+
+
+
+
+
+        return null;
+    }
 
 
 
@@ -81,5 +110,7 @@ public class FileService {
         multipartFile.transferTo(file);
         return file;
     }
+
+
 
 }

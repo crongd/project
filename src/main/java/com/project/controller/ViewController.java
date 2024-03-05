@@ -54,4 +54,9 @@ public class ViewController {
     public String pdf_text_or_image() {
         return "file/pdf-text-or-image";
     }
+
+    @GetMapping("/pdf-merge")
+    public String pdf_merge() {
+        return "file/pdf-merge";
+    }
 }

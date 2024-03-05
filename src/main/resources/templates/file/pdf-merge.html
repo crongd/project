@@ -2,21 +2,21 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>PDF MERGER</title>
     <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
     <link rel="stylesheet" href="../../static/css/public/file.css" th:href="@{/css/public/file.css}">
     <script src="../../static/js/public/file.js" th:src="@{/js/public/file.js}" defer></script>
 
-    <script src="../../static/js/file/pdf-text-or-image.js" th:src="@{/js/file/pdf-text-or-image.js}" defer></script>
+    <script src="../../static/js/file/pdf-merge.js" th:src="@{/js/file/pdf-merge.js}" defer></script>
 </head>
 <body>
 <th:block th:replace="~{public/header :: header}"></th:block>
 
-<h1 id="title">PDF 문자와 이미지 추출</h1>
+<h1 id="title">PDF 합치기</h1>
 <section id="content">
     <div>
-        <label>start page<input type="number" id="startNo"></label> <br>
-        <label>end page<input type="number" id="endNo"></label> <br>
+<!--        <label>start page<input type="number" id="startNo"></label> <br>-->
+<!--        <label>end page<input type="number" id="endNo"></label> <br>-->
     </div>
     <div>
         <button id="submit-btn">처리</button>
@@ -26,11 +26,9 @@
 <th:block th:replace="~{public/file :: file}"></th:block>
 
 <div id="complete-container">
-    <div id="complete-text">
-
-    </div>
-    <div id="complete-image">
-
+    <div class="complete-content">
+<!--        <img src="/image/icon-pdf.png" alt="PDF-ICON"/><br>-->
+<!--        <a href="다운로드주소" download="다운로드.pdf">다운로드</a>-->
     </div>
 </div>
 
@@ -38,37 +36,19 @@
 </html>
 
 <style>
-    #complete-image {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        justify-items: center;
-    }
-
-    .complete-img {
-        text-align: center;
-        width: 200px;
-        height: 200px;
-    }
-
 
     #complete-container {
         display: flex;
         justify-content: center;
+        margin: 20px auto;
+        border: 1px solid black;
+        border-radius: 10px;
+        width: 800px;
+        height: 300px;
     }
 
-    #complete-text {
-        border: 1px solid black;
-        width: 250px;
-        height: 300px;
-        overflow: auto;
-    }
+    .complete-content {
 
-    #complete-image {
-        border: 1px solid black;
-        width: 700px;
-        height: 300px;
-        overflow: auto;
-        margin: 0 10px;
     }
 
     #title {
