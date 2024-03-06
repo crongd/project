@@ -26,10 +26,10 @@
 <th:block th:replace="~{public/file :: file}"></th:block>
 
 <div id="complete-container">
-    <div class="complete-content">
+<!--    <div class="complete-content">-->
 <!--        <img src="/image/icon-pdf.png" alt="PDF-ICON"/><br>-->
-<!--        <a href="다운로드주소" download="다운로드.pdf">다운로드</a>-->
-    </div>
+<!--        <a href="" download="다운로드.pdf">다운로드</a>-->
+<!--    </div>-->
 </div>
 
 </body>
@@ -48,7 +48,16 @@
     }
 
     .complete-content {
+        width: 200px;
+        height: 250px;
+        border: 1px solid black;
+        border-radius: 10px;
+        margin: auto 0;
+    }
 
+    .complete-content img {
+        width: 200px;
+        height: 200px;
     }
 
     #title {

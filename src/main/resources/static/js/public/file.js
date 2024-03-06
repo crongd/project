@@ -17,6 +17,12 @@ function imageControl(files) {
     const reg = /(.*?)\.(pdf)$/;
 
     imgViewContainer.innerHTML = '';
+
+    if (files.length === 0 ){
+        fileData = [];
+        return;
+
+    }
     for (let file of files) {
         if (file.name.match(reg)) {
             const reader = new FileReader();

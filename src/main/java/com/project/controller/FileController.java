@@ -2,6 +2,9 @@ package com.project.controller;
 
 import com.project.service.FileService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,10 +36,15 @@ public class FileController {
     }
 
     @PostMapping("/pdf-merge")
-    public Map<String, Object> pdf_merge(
+    public ResponseEntity<InputStreamResource> pdf_merge(
             @RequestParam("pdfs") List<MultipartFile> pdfs
-    ) {
-        System.out.println(pdfs);
-        return null;
+    ) throws IOException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=merged.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .body(fileService.pdf_merge(pdfs));
     }
 }
