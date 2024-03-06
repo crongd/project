@@ -59,4 +59,10 @@ public class ViewController {
     public String pdf_merge() {
         return "file/pdf-merge";
     }
+
+    @GetMapping("/pdf-to-jpg")
+    public String pdf_to_jpg() {
+        return "file/pdf-to-jpg";
+    }
+
 }

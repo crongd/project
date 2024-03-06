@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="../../static/css/public/file.css" th:href="@{/css/public/file.css}">
     <script src="../../static/js/public/file.js" th:src="@{/js/public/file.js}" defer></script>
 
-    <script src="../../static/js/file/pdf-text-or-image.js" th:src="@{/js/file/pdf-text-or-image.js}" defer></script>
+    <script src="../../static/js/file/pdf-to-jpg.js" th:src="@{/js/file/pdf-to-jpg.js}" defer></script>
 </head>
 <body>
 <th:block th:replace="~{public/header :: header}"></th:block>
@@ -26,9 +26,6 @@
 <th:block th:replace="~{public/file :: file}"></th:block>
 
 <div id="complete-container">
-    <div id="complete-text">
-
-    </div>
     <div id="complete-image">
 
     </div>
@@ -54,13 +51,6 @@
     #complete-container {
         display: flex;
         justify-content: center;
-    }
-
-    #complete-text {
-        border: 1px solid black;
-        width: 250px;
-        height: 300px;
-        overflow: auto;
     }
 
     #complete-image {

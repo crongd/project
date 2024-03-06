@@ -104,7 +104,36 @@ public class FileService {
         return new InputStreamResource(new ByteArrayInputStream(mergedPdfBytes));
     }
 
+    public List<byte[]> pdf_to_jpg (List<MultipartFile> pdfs, Optional<Integer> startPageOpt, Optional<Integer> endPageOpt) throws IOException {
+        List<byte[]> result = new ArrayList<>();
 
+
+        for (MultipartFile pdf : pdfs) {
+            InputStream pdfStream = new ByteArrayInputStream(pdf.getBytes());
+
+            PDDocument document = PDDocument.load(pdfStream);
+
+            int startPage = startPageOpt.orElse(0);
+            int endPage = endPageOpt.orElse(document.getNumberOfPages() - 1);
+
+            PDFRenderer renderer = new PDFRenderer(document);
+
+            for (int page = startPage; page <= endPage; page++) {
+                BufferedImage bi = renderer.renderImage(0);
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                ImageIO.write(bi, "jpeg", baos);
+
+                result.add(baos.toByteArray());
+            }
+
+            document.close();
+        }
+
+
+        return result;
+    }
 
     private File multipartFileToFile(MultipartFile multipartFile) throws IOException {
         File file = new File("C:\\" + Objects.requireNonNull(multipartFile.getOriginalFilename()));

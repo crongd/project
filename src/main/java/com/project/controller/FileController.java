@@ -14,6 +14,8 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @RequiredArgsConstructor
@@ -46,5 +48,15 @@ public class FileController {
                 .ok()
                 .headers(headers)
                 .body(fileService.pdf_merge(pdfs));
+    }
+
+    @PostMapping("/pdf-to-jpg")
+    public List<byte[]> pdf_to_jpg(
+            @RequestParam("pdfs") List<MultipartFile> pdfs,
+            @RequestParam(value = "startPage") Optional<Integer> startPage,
+            @RequestParam(value = "endPage") Optional<Integer> endPage
+    ) throws IOException {
+
+        return fileService.pdf_to_jpg(pdfs, startPage, endPage);
     }
 }
