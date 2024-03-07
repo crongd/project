@@ -17,12 +17,14 @@ submitBtn.onclick = () => {
     console.log(startPage.value);
     console.log(endPage.value)
 
-    if (startPage.value == null) {
+    if (startPage.value !== '') {
         data.append("startPage", startPage.value);
     }
-    if (endPage.value == null) {
+    if (endPage.value !== '') {
         data.append("endPage", endPage.value);
     }
+
+    console.log(data);
 
     fetch('/file/pdf-to-jpg', {
         method: 'POST',

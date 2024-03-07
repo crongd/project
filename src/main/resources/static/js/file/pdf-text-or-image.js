@@ -6,6 +6,8 @@ const resultImage = document.querySelector('#complete-image');
 
 
 submitBtn.onclick = () => {
+    console.log('클릭')
+    console.log(fileData)
     if (fileData.length > 1) {
         alert('텍스트 및 이미지 추출은 1개의 파일만 가능합니다.');
         imgViewContainer.innerHTML = '';

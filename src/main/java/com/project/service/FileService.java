@@ -109,17 +109,20 @@ public class FileService {
 
 
         for (MultipartFile pdf : pdfs) {
+            int startPage;
+            int endPage;
             InputStream pdfStream = new ByteArrayInputStream(pdf.getBytes());
 
             PDDocument document = PDDocument.load(pdfStream);
 
-            int startPage = startPageOpt.orElse(0);
-            int endPage = endPageOpt.orElse(document.getNumberOfPages() - 1);
-
             PDFRenderer renderer = new PDFRenderer(document);
 
-            for (int page = startPage; page <= endPage; page++) {
-                BufferedImage bi = renderer.renderImage(0);
+
+
+
+
+            for (int page = startPage - 1; page <= endPage; page++) {
+                BufferedImage bi = renderer.renderImage(page);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
 

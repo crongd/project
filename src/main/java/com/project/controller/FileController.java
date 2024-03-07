@@ -53,9 +53,12 @@ public class FileController {
     @PostMapping("/pdf-to-jpg")
     public List<byte[]> pdf_to_jpg(
             @RequestParam("pdfs") List<MultipartFile> pdfs,
-            @RequestParam(value = "startPage") Optional<Integer> startPage,
-            @RequestParam(value = "endPage") Optional<Integer> endPage
+            @RequestParam("startPage") Optional<Integer> startPage,
+            @RequestParam("endPage") Optional<Integer> endPage
     ) throws IOException {
+        System.out.println(pdfs);
+        System.out.println(startPage);
+        System.out.println(endPage);
 
         return fileService.pdf_to_jpg(pdfs, startPage, endPage);
     }
