@@ -66,16 +66,19 @@ public class FileController {
 
     @PostMapping("/image-to-pdf")
     public ResponseEntity<InputStreamResource> image_to_pdf(
-            @RequestParam("images") List<MultipartFile> images
+            @RequestParam("images") List<MultipartFile> images,
+            @RequestParam("ratio") String ratio
     ) throws IOException {
         System.out.println("images : " + images);
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_PDF);
         headers.setContentDispositionFormData("attachment", "output.pdf");
+        System.out.println(ratio);
+
 
         return ResponseEntity
                 .ok()
                 .headers(headers)
-                .body(fileService.image_to_pdf(images));
+                .body(fileService.image_to_pdf(images, Objects.equals(ratio, "가로")));
     }
 }

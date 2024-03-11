@@ -2,7 +2,7 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>IMAGE to PDF</title>
     <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
     <link rel="stylesheet" href="../../static/css/public/file.css" th:href="@{/css/public/file.css}">
     <script src="../../static/js/public/image.js" th:src="@{/js/public/image.js}" defer></script>
@@ -16,6 +16,10 @@
 <section id="content">
 
     <div>
+        <select id="ratio">
+            <option value="가로">가로</option>
+            <option value="세로">세로</option>
+        </select>
         <button id="submit-btn">처리</button>
     </div>
 </section>

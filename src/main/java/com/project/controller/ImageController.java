@@ -76,4 +76,14 @@ public class ImageController {
         return new ResponseEntity<>(imageService.image_compression(images), HttpStatus.OK);
     }
 
+    @PostMapping("/format")
+    public ResponseEntity<List<Map<String, String>>> image_format(
+            @RequestParam("images") List<MultipartFile> images,
+            @RequestParam("format") String format
+    ) throws IOException {
+        System.out.println(images);
+        System.out.println(format);
+        return new ResponseEntity<>(imageService.image_format(images, format), HttpStatus.OK);
+    }
+
 }

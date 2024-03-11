@@ -21,7 +21,6 @@ import java.util.List;
 public class ImageService {
 
 
-
     public List<Map<String, String>> image_resize(List<MultipartFile> images, int width, int height, boolean check) throws IOException {
         List<Map<String, String>> resizedImages = new ArrayList<>();
 
@@ -170,6 +169,39 @@ public class ImageService {
         }
 
         return compressionImages;
+    }
+
+    public List<Map<String, String>> image_format(List<MultipartFile> images, String format) throws IOException {
+        List<Map<String, String>> result = new ArrayList<>();
+
+        for (MultipartFile image : images) {
+            InputStream in = new ByteArrayInputStream(image.getBytes());
+            BufferedImage originalImage = ImageIO.read(in);
+
+            BufferedImage formatImage = Thumbnails.of(originalImage)
+                    .size(originalImage.getWidth(), originalImage.getHeight())
+                    .outputFormat(format)
+                    .asBufferedImage();
+
+
+            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            ImageIO.write(formatImage, format, baos);
+            byte[] bytes = baos.toByteArray();
+
+            String base64FormatImage = Base64.getEncoder().encodeToString(bytes);
+            String base64FormatImageWithMime = "data:" + format + ";base64," + base64FormatImage;
+
+
+            Map<String, String> imageMap = new HashMap<>();
+            imageMap.put("name", "format_image." + format);
+            imageMap.put("image", base64FormatImageWithMime);
+
+            result.add(imageMap);
+            in.close();
+            baos.close();
+        }
+
+        return result;
     }
 
 

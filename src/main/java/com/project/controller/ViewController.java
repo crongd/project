@@ -25,6 +25,11 @@ public class ViewController {
         return "image/image-compression";
     }
 
+    @GetMapping("/image-format")
+    public String image_format() {
+        return "image/image-format";
+    }
+
     @GetMapping("/url-encoder")
     public String url_encoder() {
         return "encode/url-encoder";
@@ -69,5 +74,6 @@ public class ViewController {
     public String image_to_pdf() {
         return "file/image-to-pdf";
     }
+
 
 }

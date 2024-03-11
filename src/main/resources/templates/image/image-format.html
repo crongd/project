@@ -2,25 +2,27 @@
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>이미지 압축</title>
+    <title>이미지 형식 변경</title>
     <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
     <script src="../../static/js/public/image.js" th:src="@{/js/public/image.js}" defer></script>
     <link rel="stylesheet" href="../../static/css/public/image.css" th:href="@{/css/public/image.css}">
-    <script src="../../static/js/image/image-compression.js" th:src="@{/js/image/image-compression.js}" defer></script>
+    <script src="../../static/js/image/image-format.js" th:src="@{/js/image/image-format.js}" defer></script>
 
 
 </head>
 <body>
 <th:block th:replace="~{public/header :: header}"></th:block>
 
-<h1 class="title">이미지 용량을 조절함</h1>
-<h2 class="title">많은 사용은 이미지의 품질을 떨어트릴 수 있음</h2>
+<h1 class="title">이미지를 형식 변경</h1>
 <div id="content">
-<!--    <div>-->
-<!--        <label><input type="checkbox" id="check"> 사진 비율 무시 </label><br>-->
-<!--        <label>WIDTH : <input type="number" id="width"> px</label><br>-->
-<!--        <label>HEIGHT : <input type="number" id="height"> px</label>-->
-<!--    </div>-->
+    <div>
+        <select name="" id="format-selection">
+            <option value="jpg">JPG</option>
+            <option value="jpeg">JPEG</option>
+            <option value="png">PNG</option>
+            <option value="gif">GIF</option>
+        </select>
+    </div>
     <div><button id="submit-btn">처리하기</button></div>
 </div>
 <th:block th:replace="~{public/image :: image}"></th:block>
@@ -58,7 +60,7 @@
     #content button {
         margin: 0 20px;
         width: 60px;
-        height: 60px;
+        height: 30px;
         background-color: #0855fd;
         color: white;
         border: 1px solid white;

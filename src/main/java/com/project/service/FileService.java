@@ -4,6 +4,7 @@ import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.text.PDFTextStripper;
@@ -143,18 +144,40 @@ public class FileService {
         return result;
     }
 
-    public InputStreamResource image_to_pdf(List<MultipartFile> images) throws IOException {
+    public InputStreamResource image_to_pdf(List<MultipartFile> images, boolean isLandscape) throws IOException {
         System.out.println("image_to_pdf start");
 
         PDDocument document = new PDDocument();
+        // 여백 설정 (단위: 포인트)
+        float margin = 30;
+
+        PDRectangle pageSize = isLandscape ? new PDRectangle(PDRectangle.A4.getHeight(), PDRectangle.A4.getWidth()) : PDRectangle.A4;
 
         for (MultipartFile image : images) {
             if (image.getContentType() != null && image.getContentType().startsWith("image/")) {
-                PDPage page = new PDPage();
+                PDPage page = new PDPage(pageSize);
                 document.addPage(page);
 
                 PDPageContentStream contentStream = new PDPageContentStream(document, page);
-                contentStream.drawImage(PDImageXObject.createFromByteArray(document, image.getBytes(), ""), 0, 0);
+
+                PDImageXObject pdImage = PDImageXObject.createFromByteArray(document, image.getBytes(), "");
+                float originalWidth = pdImage.getWidth();
+                float originalHeight = pdImage.getHeight();
+
+                // 페이지 크기와 여백을 고려한 사용 가능한 너비와 높이
+                float pageWidth = pageSize.getWidth() - (2 * margin);
+                float pageHeight = pageSize.getHeight() - (2 * margin);
+
+                // 비율 유지를 위한 조정
+                float ratio = Math.min(pageWidth / originalWidth, pageHeight / originalHeight);
+                float width = originalWidth * ratio;
+                float height = originalHeight * ratio;
+
+                // 이미지를 중앙에 배치하기 위한 X, Y 좌표 계산
+                float x = margin + (pageWidth - width) / 2;
+                float y = margin + (pageHeight - height) / 2;
+
+                contentStream.drawImage(pdImage, x, y, width, height);
                 contentStream.close();
             }
         }
@@ -164,8 +187,8 @@ public class FileService {
         document.close();
 
         return new InputStreamResource(new ByteArrayInputStream(outputStream.toByteArray()));
-
     }
+
 
     private File multipartFileToFile(MultipartFile multipartFile) throws IOException {
         File file = new File("C:\\" + Objects.requireNonNull(multipartFile.getOriginalFilename()));
