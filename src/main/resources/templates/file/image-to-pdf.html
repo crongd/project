@@ -5,25 +5,22 @@
     <title>Title</title>
     <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
     <link rel="stylesheet" href="../../static/css/public/file.css" th:href="@{/css/public/file.css}">
-    <script src="../../static/js/public/file.js" th:src="@{/js/public/file.js}" defer></script>
+    <script src="../../static/js/public/image.js" th:src="@{/js/public/image.js}" defer></script>
 
-    <script src="../../static/js/file/pdf-to-jpg.js" th:src="@{/js/file/pdf-to-jpg.js}" defer></script>
+    <script src="../../static/js/file/image-to-pdf.js" th:src="@{/js/file/image-to-pdf.js}" defer></script>
 </head>
 <body>
 <th:block th:replace="~{public/header :: header}"></th:block>
 
-<h1 id="title">PDF to IMAGE</h1>
+<h1 id="title">IMAGE to PDF</h1>
 <section id="content">
-    <div>
-        <label>start page<input type="number" id="startNo"></label> <br>
-        <label>end page<input type="number" id="endNo"></label> <br>
-    </div>
+
     <div>
         <button id="submit-btn">처리</button>
     </div>
 </section>
 
-<th:block th:replace="~{public/file :: file}"></th:block>
+<th:block th:replace="~{public/image :: image}"></th:block>
 
 <div id="complete-container">
     <div id="complete-image">

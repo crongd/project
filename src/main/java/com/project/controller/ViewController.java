@@ -65,4 +65,9 @@ public class ViewController {
         return "file/pdf-to-jpg";
     }
 
+    @GetMapping("/image-to-pdf")
+    public String image_to_pdf() {
+        return "file/image-to-pdf";
+    }
+
 }

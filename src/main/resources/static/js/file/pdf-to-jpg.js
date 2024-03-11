@@ -20,6 +20,7 @@ submitBtn.onclick = () => {
     if (startPage.value !== '') {
         data.append("startPage", startPage.value);
     }
+
     if (endPage.value !== '') {
         data.append("endPage", endPage.value);
     }

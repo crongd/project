@@ -4,6 +4,7 @@ import com.project.service.FileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,13 +54,28 @@ public class FileController {
     @PostMapping("/pdf-to-jpg")
     public List<byte[]> pdf_to_jpg(
             @RequestParam("pdfs") List<MultipartFile> pdfs,
-            @RequestParam("startPage") Optional<Integer> startPage,
-            @RequestParam("endPage") Optional<Integer> endPage
+            @RequestParam(value = "startPage", required = false) String startPage,
+            @RequestParam(value = "endPage", required = false) String endPage
     ) throws IOException {
         System.out.println(pdfs);
         System.out.println(startPage);
         System.out.println(endPage);
 
         return fileService.pdf_to_jpg(pdfs, startPage, endPage);
+    }
+
+    @PostMapping("/image-to-pdf")
+    public ResponseEntity<InputStreamResource> image_to_pdf(
+            @RequestParam("images") List<MultipartFile> images
+    ) throws IOException {
+        System.out.println("images : " + images);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("attachment", "output.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .body(fileService.image_to_pdf(images));
     }
 }

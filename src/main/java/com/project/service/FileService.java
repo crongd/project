@@ -1,18 +1,15 @@
 package com.project.service;
 
-import org.apache.pdfbox.cos.COSName;
-import org.apache.pdfbox.io.MemoryUsageSetting;
 import org.apache.pdfbox.multipdf.PDFMergerUtility;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
-import org.apache.pdfbox.pdmodel.PDPageTree;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
 import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.PDFTextStripperByArea;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.stereotype.Service;
-import org.springframework.validation.ObjectError;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.imageio.ImageIO;
@@ -104,24 +101,32 @@ public class FileService {
         return new InputStreamResource(new ByteArrayInputStream(mergedPdfBytes));
     }
 
-    public List<byte[]> pdf_to_jpg (List<MultipartFile> pdfs, Optional<Integer> startPageOpt, Optional<Integer> endPageOpt) throws IOException {
+    public List<byte[]> pdf_to_jpg (List<MultipartFile> pdfs, String startPageOpt, String endPageOpt) throws IOException {
         List<byte[]> result = new ArrayList<>();
 
 
         for (MultipartFile pdf : pdfs) {
-            int startPage;
-            int endPage;
             InputStream pdfStream = new ByteArrayInputStream(pdf.getBytes());
 
             PDDocument document = PDDocument.load(pdfStream);
 
             PDFRenderer renderer = new PDFRenderer(document);
 
+            int startPage = 0;
+            int endPage = document.getNumberOfPages() - 1;
+
+            if (!Objects.isNull(startPageOpt)) {
+                startPage = Integer.parseInt(startPageOpt) - 1;
+            }
+
+            if (!Objects.isNull(startPageOpt)) {
+                endPage = Integer.parseInt(endPageOpt) - 1;
+            }
 
 
 
 
-            for (int page = startPage - 1; page <= endPage; page++) {
+            for (int page = startPage; page <= endPage; page++) {
                 BufferedImage bi = renderer.renderImage(page);
 
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -136,6 +141,30 @@ public class FileService {
 
 
         return result;
+    }
+
+    public InputStreamResource image_to_pdf(List<MultipartFile> images) throws IOException {
+        System.out.println("image_to_pdf start");
+
+        PDDocument document = new PDDocument();
+
+        for (MultipartFile image : images) {
+            if (image.getContentType() != null && image.getContentType().startsWith("image/")) {
+                PDPage page = new PDPage();
+                document.addPage(page);
+
+                PDPageContentStream contentStream = new PDPageContentStream(document, page);
+                contentStream.drawImage(PDImageXObject.createFromByteArray(document, image.getBytes(), ""), 0, 0);
+                contentStream.close();
+            }
+        }
+
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        document.save(outputStream);
+        document.close();
+
+        return new InputStreamResource(new ByteArrayInputStream(outputStream.toByteArray()));
+
     }
 
     private File multipartFileToFile(MultipartFile multipartFile) throws IOException {
