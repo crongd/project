@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>MAIN</title>
+    <link rel="stylesheet" href="../../static/css/public/header.css" th:href="@{/css/public/header.css}">
+    <link rel="stylesheet" href="../static/css/public/index.css" th:href="@{/css/public/index.css}">
+    <script src="https://kit.fontawesome.com/53e865f4e7.js" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<th:block th:replace="~{public/header :: header}"></th:block>
+<h1 class="main-title">모두를 위해 만들어진 다양한 도구</h1>
+<h3 style="text-align: center;">로그인 x</h3>
+<section id="container1">
+    <div class="text" id="image-content">
+        <h2 class="text-title"><i class="fa-regular fa-image"></i> 웹 이미지 도구</h2>
+        <p class="text-content">여러장의 사진을 쉽게 크기 조정, 압축, 형식 변환 등의 기능이 있음.</p>
+    </div>
+    <div class="text" id="pdf-content">
+        <h2 class="text-title"><i class="fa-regular fa-file-pdf"></i> PDF 관련 도구</h2>
+        <p class="text-content">PDF 텍스트 및 이미지 추출, PDF MERGE 등의 기능이 있음.</p>
+    </div>
+    <div class="text" id="encoding-content">
+        <h2 class="text-title"><i class="fa-solid fa-wrench"></i> ENCODING 도구</h2>
+        <p class="text-content">URL, MD5 암호화, SHA256 암호화 등의 인코딩 기능이 있음.</p>
+    </div>
+</section>
+<section id="container2">
+    <h1 class="sec2-title">전 세계 사용자의 사랑을 받고 싶고 신뢰할 수 없는 <br>온라인 도구 모음</h1>
+    <h2 class="sec2-content">이 페이지는 온라인 도구를 모아놓은 간단한 솔류선 입니다. <br>0% 보안을 통해 웹에서 직접 작업을 하는데 필요한 도구 모음 입니다.</h2>
+</section>
 </body>
 </html>

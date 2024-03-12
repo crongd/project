@@ -1,0 +1,70 @@
+body {
+    overflow: auto;
+}
+
+.main-title {
+    margin: 50px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-family: 궁서체;
+    font-weight: bold;
+}
+
+#container1 {
+    display: flex;
+    gap: 50px;
+    justify-content: space-around;
+}
+
+.text-title {
+    text-align: center;
+    font-size: 2rem;
+    font-family: "MS Reference Sans Serif";
+    word-break: keep-all;
+}
+
+.text-content {
+    font-size: 1.3rem;
+    color: #707078;
+    word-break: keep-all;
+}
+
+.text {
+    width: 400px;
+    border: 1px solid white;
+    /*border-radius: 10px;*/
+    /*background-color: #efefef;*/
+    padding: 10px;
+    font-weight: bold;
+}
+
+#container2 {
+    height: 500px;
+    margin: 50px;
+    text-align: center;
+    background-image: url("https://img.freepik.com/premium-photo/abstract-elegance-backgrounds-abstract-elegance-backgrounds_1093151-154.jpg?size=626&ext=jpg&ga=GA1.1.1292351815.1710115200&semt=ais");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    align-content: center;
+}
+
+.sec2-title {
+    font-size: 42px;
+    word-break: keep-all;
+}
+
+.sec2-content {
+    font-size: 32px;
+    word-break: keep-all;
+    color: #707078;
+}
+
+#image-content {
+    align-content: center;
+}
+
+
+
+
+
